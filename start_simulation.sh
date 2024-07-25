@@ -9,8 +9,8 @@ fi
 # Obtiene la cantidad_simulaciones desde el primer argumento
 cantidad_simulaciones=$1
 
-v1=0.1
-v2=0.14
+v1=0.05
+v2=0.1
 v3=0.17
 v4=0.19
 v5=0.2
