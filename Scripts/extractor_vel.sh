@@ -5,7 +5,7 @@ for j in {0..7}; do
 	temp_script="temp_script_${valores_v[$j]}.py"
 
 	# Copia el script original a un script temporal
-	cp extract_vel.py $temp_script
+	cp extractor_vel.py $temp_script
 
 	# Usa sed para reemplazar '$p' en el script temporal con el valor actual de p
 	sed -i "s/\$jj/${valores_v[$j]}/g" $temp_script
