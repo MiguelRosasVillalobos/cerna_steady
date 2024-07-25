@@ -52,10 +52,13 @@ for ((i = 1; i <= $cantidad_simulaciones; i++)); do
 	cp -r "Case_0/geometry_script/" "$carpeta_caso_i/"
 	cp "Case_0/mesh.geo" "$carpeta_caso_i/"
 	cp "Case_0/deltap_extract.py" "$carpeta_caso_i/"
-	cp "graficar_p.py" "$carpeta_caso_i"
-	cp "graficar_vel.py" "$carpeta_caso_i"
-	cp "ajuste.py" "$carpeta_caso_i"
-	cp "extractor_p.py" "$carpeta_caso_i"
+	cp "Scripts/graficar_p.py" "$carpeta_caso_i"
+	cp "Scripts/graficar_vel.py" "$carpeta_caso_i"
+	cp "Scripts/ajuste.py" "$carpeta_caso_i"
+	cp "Scripts/extractor_p.py" "$carpeta_caso_i"
+	cp "Scripts/extractor_p.sh" "$carpeta_caso_i"
+	cp "Scripts/extractor_vel.py" "$carpeta_caso_i"
+	cp "Scripts/extractor_vel.sh" "$carpeta_caso_i"
 
 	cd "$carpeta_caso_i/"
 
@@ -84,6 +87,7 @@ for ((i = 1; i <= $cantidad_simulaciones; i++)); do
 	sed -i "s/\$tff/$tf/g" ./system/controlDict
 
 	sed -i "s/\$ii/$i/g" ./extractor_p.py
+	sed -i "s/\$ii/$i/g" ./extractor_vel.py
 
 	mkdir Case_0
 	mv 0/ Case_0/
@@ -134,7 +138,7 @@ for ((i = 1; i <= $cantidad_simulaciones; i++)); do
 		mpirun -np 8 simpleFoam -parallel
 		cd ..
 	done
-
+	kitty --hold -e bash -c "./extractor_p.sh && ./extractor_vel.sh ; exec bash" &
 	cd ..
 done
 

@@ -15,6 +15,10 @@ v1foam = OpenFOAMReader(
     FileName="/home/miguel/cerna_steady/Case_$ii/Case_$ii_$jj/$jj.foam",
 )
 
+# Properties modified on v1foam
+v1foam.SkipZeroTime = 0
+v1foam.CaseType = "Decomposed Case"
+
 # get active view
 renderView1 = GetActiveViewOrCreate("RenderView")
 
@@ -26,6 +30,9 @@ v1foamDisplay.Representation = "Surface"
 
 # reset view to fit data
 renderView1.ResetCamera(False, 0.9)
+
+# get the material library
+materialLibrary1 = GetMaterialLibrary()
 
 # show color bar/color legend
 v1foamDisplay.SetScalarBarVisibility(renderView1, True)
@@ -45,20 +52,34 @@ animationScene1 = GetAnimationScene()
 # update animation scene based on data timesteps
 animationScene1.UpdateAnimationUsingDataTimeSteps()
 
-# create a new 'Plot Global Variables Over Time'
-plotGlobalVariablesOverTime1 = PlotGlobalVariablesOverTime(
-    registrationName="PlotGlobalVariablesOverTime1", Input=v1foam
-)
-
-# set active source
-SetActiveSource(v1foam)
-
-# destroy plotGlobalVariablesOverTime1
-Delete(plotGlobalVariablesOverTime1)
-del plotGlobalVariablesOverTime1
+animationScene1.GoToLast()
 
 # create a new 'Plot Over Line'
 plotOverLine1 = PlotOverLine(registrationName="PlotOverLine1", Input=v1foam)
+
+# Properties modified on v1foam
+v1foam.MeshRegions = ["internalMesh"]
+v1foam.CellArrays = [
+    "U",
+    "div(phi)",
+    "magR",
+    "momentError",
+    "nuTilda",
+    "nut",
+    "p",
+    "turbulenceProperties:I",
+    "turbulenceProperties:L",
+    "turbulenceProperties:R",
+    "turbulenceProperties:devReff",
+    "turbulenceProperties:epsilon",
+    "turbulenceProperties:k",
+    "turbulenceProperties:nuEff",
+    "turbulenceProperties:nut",
+]
+
+# Properties modified on plotOverLine1
+plotOverLine1.Point1 = [0.0, 0.0, 0.0]
+plotOverLine1.Point2 = [0.0, 0.0, 0.30000001192092896]
 
 # show data in view
 plotOverLine1Display = Show(plotOverLine1, renderView1, "GeometryRepresentation")
@@ -560,6 +581,12 @@ plotOverLine1Display_1.SeriesMarkerSize = [
     "4",
 ]
 
+# Rescale transfer function
+pLUT.RescaleTransferFunction(-0.13434259593486786, 0.08531588315963745)
+
+# Rescale transfer function
+pPWF.RescaleTransferFunction(-0.13434259593486786, 0.08531588315963745)
+
 # create a new 'Pass Arrays'
 passArrays1 = PassArrays(registrationName="PassArrays1", Input=plotOverLine1)
 
@@ -597,15 +624,15 @@ SaveData(
 # saving layout sizes for layouts
 
 # layout/tab size in pixels
-layout1.SetSize(1603, 857)
+layout1.SetSize(628, 823)
 
 # -----------------------------------
 # saving camera placements for views
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [0.0, 0.0, 0.7499713243441666]
+renderView1.CameraPosition = [0.0, 0.0, 0.9146790856026675]
 renderView1.CameraFocalPoint = [0.0, 0.0, 0.15000000596046448]
-renderView1.CameraParallelScale = 0.15528400371297021
+renderView1.CameraParallelScale = 0.20062595770137284
 
 
 ##--------------------------------------------
