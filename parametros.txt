@@ -11,7 +11,7 @@ Ld = 0.0568 // m (diametro del ducto)
 lc = 0.0055
 
 // radio del ducto
-rd = 0.0284 // m (pvc sanitario)
+rd = 0.0284 // m 
 
 // largo del ducto lado 1
 l1 = 0.15 // m
@@ -29,7 +29,7 @@ np = 26 // adimensional
 tf = 5 // s
 
 //delta de tiempo
-dt = 0.01 // s
+dt = 0.1 // s
 
 //escribir resultado cada tantos deltas de tiempo
 wi = 20 // adimensional
