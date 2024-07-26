@@ -4,6 +4,9 @@ from scipy.optimize import curve_fit
 from scipy.stats import pearsonr
 import matplotlib.pyplot as plt
 
+# Configurar Matplotlib para usar texto en formato SVG
+plt.rcParams["svg.fonttype"] = "none"
+
 # Listas de nombres de archivos
 archivos_vel_csv = [f"v{i}_vel.csv" for i in range(1, 9)]
 archivos_p_csv = [f"v{i}.csv" for i in range(1, 9)]
@@ -56,8 +59,13 @@ print(f"Coeficiente de correlación de Pearson: {r}")
 V_fine = np.linspace(min(V), max(V), 1000)
 I_fine = parabola(V_fine, a, b)
 
-# Graficar los datos y el ajuste con estilo mejorado
-plt.figure(figsize=(10, 6))
+# Convertir tamaño de cm a pulgadas
+width_inch = 7.5 / 2.54
+height_inch = 6.0 / 2.54
+
+# Crear el gráfico de línea para los datos ordenados
+plt.figure(figsize=(width_inch, height_inch))
+
 plt.scatter(V, I, label="Datos", color="blue", marker="o")
 plt.plot(
     V_fine,
@@ -67,24 +75,30 @@ plt.plot(
     linestyle="-",
     linewidth=2,
 )
-plt.xlabel("V (m/s)", fontsize=14)
-plt.ylabel("I (m/m)", fontsize=14)
-plt.title("Ajuste Parabólico de Datos", fontsize=16)
-plt.legend(fontsize=12)
-plt.grid(True, linestyle="--", alpha=0.7)
+plt.xlabel("V (m/s)", fontsize=12)
+plt.ylabel("I (m/m)", fontsize=12)
+plt.title("Ajuste Parabólico de Datos", fontsize=12)
 plt.tick_params(axis="both", which="major", labelsize=12)
 plt.text(
     0.1,
     0.9,
     f"$r^2 = {r:.7f}$",
     transform=plt.gca().transAxes,
-    fontsize=14,
+    fontsize=12,
     verticalalignment="top",
 )
+
+# Añadir una cuadrícula más suave
+plt.grid(True, which="both", linestyle="--", linewidth=0.5)
+
+# Añadir leyenda
+plt.legend(loc="best", fontsize=12)
+
+# Ajustar el diseño para evitar recortes
 plt.tight_layout()
 
-# Guardar el gráfico como un archivo PNG de alta resolución
-# plt.savefig("ajuste_parabolico.png", dpi=300)
-print(I)
+# Guardar la figura en formato SVG
+plt.savefig("Ajuste.svg", format="svg")
+
 # Mostrar el gráfico
 plt.show()

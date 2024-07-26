@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
+# Configurar Matplotlib para usar texto en formato SVG
+plt.rcParams["svg.fonttype"] = "none"
+
 # Cargar los datos de los archivos CSV
 files = [
     "v1_vel.csv",
@@ -16,19 +19,33 @@ files = [
 # Leer los archivos y almacenar los DataFrames en una lista
 dataframes = [pd.read_csv(file) for file in files]
 
-# Configurar la figura para el gráfico
-plt.figure(figsize=(14, 8))
+# Convertir tamaño de cm a pulgadas
+width_inch = 7.5 / 2.54
+height_inch = 6.0 / 2.54
+
+# Crear el gráfico de línea para los datos ordenados
+plt.figure(figsize=(width_inch, height_inch))
 
 # Graficar la columna 'p' para cada archivo
 for i, df in enumerate(dataframes):
     plt.plot(df["Points:1"], df["U:2"], label=f"v{i+1}")
 
 # Configuraciones del gráfico
-plt.xlabel("Distancia y (m)")
-plt.ylabel("Velocidad (m/s)")
-plt.title("Comparación de Velocidad  vs Distancia en y")
-plt.legend()
-plt.grid(True)
+plt.xlabel("Distancia y (m)", fontsize=12)
+plt.ylabel("Velocidad (m/s)", fontsize=12)
+plt.title("Comparación de Velocidad  vs Distancia en y", fontsize=12)
+
+# Añadir una cuadrícula más suave
+plt.grid(True, which="both", linestyle="--", linewidth=0.5)
+
+# Añadir leyenda
+plt.legend(loc="best", fontsize=12)
+
+# Ajustar el diseño para evitar recortes
+plt.tight_layout()
+
+# Guardar la figura en formato SVG
+plt.savefig("velocity.svg", format="svg")
 
 # Mostrar el gráfico
 plt.show()
