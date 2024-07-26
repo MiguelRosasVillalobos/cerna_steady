@@ -9,14 +9,14 @@ fi
 # Obtiene la cantidad_simulaciones desde el primer argumento
 cantidad_simulaciones=$1
 
-v1=0.05
-v2=0.1
-v3=0.17
-v4=0.19
-v5=0.2
-v6=0.22
-v7=0.24
-v8=0.25
+v1=0.01
+v2=0.05
+v3=0.1
+v4=0.15
+v5=0.25
+v6=0.35
+v7=0.45
+v8=0.5
 
 # Valores de Reynolds a utilizar
 valores_v=("v1" "v2" "v3" "v4" "v5" "v6" "v7" "v8")
