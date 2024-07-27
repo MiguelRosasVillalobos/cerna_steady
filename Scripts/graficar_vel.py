@@ -14,6 +14,8 @@ files = [
     "v6_vel.csv",
     "v7_vel.csv",
     "v8_vel.csv",
+    "v9_vel.csv",
+    "v10_vel.csv",
 ]
 
 # Leer los archivos y almacenar los DataFrames en una lista

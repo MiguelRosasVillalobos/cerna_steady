@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 plt.rcParams["svg.fonttype"] = "none"
 
 # Listas de nombres de archivos
-archivos_vel_csv = [f"v{i}_vel.csv" for i in range(1, 9)]
-archivos_p_csv = [f"v{i}.csv" for i in range(1, 9)]
+archivos_vel_csv = [f"v{i}_vel.csv" for i in range(1, 11)]
+archivos_p_csv = [f"v{i}.csv" for i in range(1, 11)]
 
 # Inicializar listas para almacenar las velocidades máximas y los valores máximos de p
 velocidades_maximas = []

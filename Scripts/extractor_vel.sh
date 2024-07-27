@@ -1,6 +1,6 @@
 # Lista de valores para v
-valores_v=("v1" "v2" "v3" "v4" "v5" "v6" "v7" "v8")
-for j in {0..7}; do
+valores_v=("v1" "v2" "v3" "v4" "v5" "v6" "v7" "v8" "v9" "v10")
+for j in {0..9}; do
 	# Crear un archivo temporal para el script modificado
 	temp_script="temp_script_${valores_v[$j]}.py"
 

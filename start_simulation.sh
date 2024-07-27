@@ -9,17 +9,19 @@ fi
 # Obtiene la cantidad_simulaciones desde el primer argumento
 cantidad_simulaciones=$1
 
-v1=0.01
-v2=0.05
-v3=0.1
-v4=0.15
+v1=0.05
+v2=0.1
+v3=0.15
+v4=0.2
 v5=0.25
-v6=0.35
-v7=0.45
-v8=0.5
+v6=0.3
+v7=0.35
+v8=0.4
+v9=0.45
+v10=0.5
 
 # Valores de Reynolds a utilizar
-valores_v=("v1" "v2" "v3" "v4" "v5" "v6" "v7" "v8")
+valores_v=("v1" "v2" "v3" "v4" "v5" "v6" "v7" "v8" "v9" "v10")
 
 # Leer valores desde el archivo parametros.txt
 nu=$(grep -oP 'nu\s*=\s*\K[\d.+-]+' parametros.txt)
@@ -104,7 +106,7 @@ for ((i = 1; i <= $cantidad_simulaciones; i++)); do
 	cd ../..
 
 	# Se inicia el ciclo para variar el valor de lc
-	for j in {0..7}; do
+	for j in {0..9}; do
 		#se genera contador k
 		k=$((j + 1))
 
