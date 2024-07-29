@@ -8,7 +8,7 @@ Ld = 0.0568 // m (diametro del ducto)
 //Re = 10 // adimensional
 
 //Tamano de malla
-lc = 0.0055
+lc = 0.0055 //(convergencia para velocidad maxima de 0.5 m/s)
 
 // radio del ducto
 rd = 0.0284 // m 
